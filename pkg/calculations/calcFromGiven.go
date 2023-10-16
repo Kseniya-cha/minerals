@@ -31,7 +31,7 @@ func CalcFromGiven(info internal.Info) error {
 	for _, product := range info.Products {
 		for _, givenProduct := range given.Products {
 			if product.Id == givenProduct.Id {
-				fmt.Println(product.Animal, product.Part+":", givenProduct.Mass, "g")
+				fmt.Println(product.Animal, product.Part+":", givenProduct.Mass, "г")
 				result.Mass += givenProduct.Mass
 				result.Kkal += product.Kkal * givenProduct.Mass / 100
 				result.Protein += product.Protein * givenProduct.Mass / 100 / given.Cat.Mass / 1000
@@ -53,14 +53,14 @@ func CalcFromGiven(info internal.Info) error {
 	}
 
 	fmt.Println("")
-	fmt.Printf("Масса порции: %0.1f g\n", result.Mass)
+	fmt.Printf("Масса порции: %0.1f г\n", result.Mass)
 	fmt.Printf("Масса кошки: %0.1f кг\n", given.Cat.Mass)
 	fmt.Println("")
 	fmt.Printf("Калорийность: %0.1f ккал\n", result.Kkal)
 	fmt.Printf("Белок: %0.1f г/кг\n", result.Protein)
 	fmt.Printf("Жир: %0.1f г/кг\n", result.Fat)
 	fmt.Printf("Углеводы: %0.2f г/кг\n", result.Carbs)
-	fmt.Printf("Влага: %0.1f г/кг (%0.1f%%)\n", result.Water, result.Water/result.Mass*100)
+	fmt.Printf("Влага: %0.1f г/кг (%0.1f%%)\n", result.Water, result.Water*given.Cat.Mass/result.Mass*100)
 	fmt.Println("")
 	fmt.Printf("Ca: %0.3f г/кг\n", result.Ca)
 	fmt.Printf("P: %0.3f г/кг\n", result.P)
